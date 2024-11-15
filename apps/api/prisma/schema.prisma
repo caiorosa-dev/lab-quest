@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  developer
+  manager
+  student
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+
+  name     String?
+  imageUrl String?
+  role     UserRole @default(student)
+
+  currentLevel Int @default(1)
+  experiencePoints    Int @default(0)
+
+  currentLearningTrackId String?
+  currentLearningTrack   LearningTrack? @relation(fields: [currentLearningTrackId], references: [id])
+
+  lessonAnswers LessonAnswer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model LearningTrack {
+  id   String @id @default(uuid())
+  name String
+
+  chapters    Chapter[]
+  activeUsers User[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("learning_tracks")
+}
+
+model Chapter {
+  id   String @id @default(uuid())
+  name String
+
+  learningTrackId String
+  learningTrack   LearningTrack @relation(fields: [learningTrackId], references: [id], onDelete: Cascade)
+
+  lessons Lesson[]
+
+  knowledgeData Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("chapters")
+}
+
+model Lesson {
+  id     String @id @default(uuid())
+  number Int
+
+  chapterId String
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  exercises LessonExercise[]
+  answers   LessonAnswer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("lessons")
+}
+
+model LessonAnswer {
+  id String @id @default(uuid())
+
+  amountOfCorrectAnswers Int     @default(0)
+  totalAmountOfAnswers   Int     @default(0)
+  approved               Boolean @default(false)
+
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  initializedAt DateTime  @default(now())
+  finishedAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("lesson_answers")
+}
+
+enum LessonExerciseType {
+  unique_answer
+  multiple_choice
+  true_false
+  fill_in
+  matching
+  complete_the_sentence
+}
+
+model LessonExercise {
+  id   String             @id @default(uuid())
+  type LessonExerciseType
+  data Json
+
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  wrongMessage String?
+
+  @@map("lesson_exercises")
+}
