@@ -14,6 +14,7 @@ CREATE TABLE "users" (
     "role" "UserRole" NOT NULL DEFAULT 'student',
     "currentLevel" INTEGER NOT NULL DEFAULT 1,
     "experiencePoints" INTEGER NOT NULL DEFAULT 0,
+    "currentDailyStreak" INTEGER NOT NULL DEFAULT 0,
     "currentLearningTrackId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,

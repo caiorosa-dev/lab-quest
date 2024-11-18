@@ -29,8 +29,9 @@ model User {
   imageUrl String?
   role     UserRole @default(student)
 
-  currentLevel Int @default(1)
-  experiencePoints    Int @default(0)
+  currentLevel       Int @default(1)
+  experiencePoints   Int @default(0)
+  currentDailyStreak Int @default(0)
 
   currentLearningTrackId String?
   currentLearningTrack   LearningTrack? @relation(fields: [currentLearningTrackId], references: [id])
