@@ -110,7 +110,6 @@ function LoginPage() {
               disabled={form.isSubmitting || !form.formState.isValid}
               type="submit"
               className="w-full"
-              size='rounded'
             >
               <ButtonIcon isLoading={form.isSubmitting} />
               Entrar na sua conta

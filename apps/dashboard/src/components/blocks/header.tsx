@@ -34,32 +34,7 @@ export function Header({
           )}
           {children}
         </div>
-        <Popover>
-          <PopoverTrigger className="group">
-            <Avatar className="size-10 group-hover:opacity-80 transition-opacity">
-              {!isLoading && user.name && (
-                <AvatarFallback>
-                  {user.name
-                    .split(' ')
-                    .map((name) => name[0])
-                    .join('')
-                    .toUpperCase()}
-                </AvatarFallback>
-              )}
-            </Avatar>
-          </PopoverTrigger>
-          <PopoverContent className="w-36 p-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="w-full"
-              onClick={logout}
-            >
-              <ButtonIcon side="left" icon={LogOutIcon} />
-              Sair
-            </Button>
-          </PopoverContent>
-        </Popover>
+        
       </section>
     </header>
   );
