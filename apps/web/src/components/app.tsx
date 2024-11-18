@@ -10,7 +10,7 @@ export function App({ children }: { children: ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system" storageKey="lab-quest-ui-theme">
         {children}
-        <Toaster richColors position="top-center" duration={1500} />
+        <Toaster richColors position="bottom-right" duration={1500} />
       </ThemeProvider>
     </QueryClientProvider>
   );

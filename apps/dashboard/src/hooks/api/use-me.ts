@@ -3,7 +3,7 @@ import { useApiRoute } from '../lib/use-api-route';
 
 type UseMeHookReturn = {
   user: User;
-  isLoading: boolean;
+  isLoadingUser: boolean;
   isFetching: boolean;
   error: Error | null;
 };
@@ -16,7 +16,7 @@ export function useMe(): UseMeHookReturn {
 
   return {
     user: data ?? ({} as User),
-    isLoading,
+    isLoadingUser: isLoading,
     isFetching,
     error,
   };
