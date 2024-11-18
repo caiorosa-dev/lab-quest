@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { axiosClient } from '@/services/axios';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import cookiesStorage from '@/lib/cookie-storage';
+import cookiesStorage from '@/helpers/cookie-storage';
 import { User } from '@/types/User';
 
 export type LoginPayload = {

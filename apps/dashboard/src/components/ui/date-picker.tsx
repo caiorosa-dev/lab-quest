@@ -3,7 +3,7 @@
 import { addDays, format, subDays } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/helpers/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {
@@ -45,7 +45,7 @@ export function DatePicker({ value, onChange }: DatePickerProps) {
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-					locale={ptBR}
+          locale={ptBR}
           selected={value}
           onSelect={(date) => onChange(date)}
           today={new Date()}
