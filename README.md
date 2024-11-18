@@ -52,9 +52,10 @@ Follow these steps to get the project up and running:
    ```
 
 7. **Access the application**:
-   - The web application should be accessible at `http://localhost:5173`.
+   - The web application should be accessible at `http://localhost:3000`.
+   - The dashboard application should be accessible at `http://localhost:3001`.
    - The api application should be accessible at `http://localhost:3333`.
-   - The API documentation (Swagger) can be accessed at `http://localhost:3000/docs`.
+   - The API documentation (Swagger) can be accessed at `http://localhost:3333/docs`.
 
 ## Additional Commands
 
