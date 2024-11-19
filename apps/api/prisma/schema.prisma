@@ -16,7 +16,6 @@ datasource db {
 enum UserRole {
   admin
   developer
-  manager
   student
 }
 
@@ -25,7 +24,7 @@ model User {
   email    String @unique
   password String
 
-  name     String?
+  name     String
   imageUrl String?
   role     UserRole @default(student)
 
