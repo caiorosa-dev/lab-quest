@@ -19,11 +19,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { useZodForm } from '@/hooks/lib/use-zod-form';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useAuth } from '@/context/auth-context';
+import { useAuth } from '@/store/use-auth';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { usePublicRoute } from '@/hooks/auth/use-public-route';
-import { api } from '@/services/api'; 
+import { axiosClient } from '@/services/axios';
 
 export const Route = createFileRoute('/login/')({
   component: () => <LoginPage />,
@@ -44,19 +44,23 @@ function LoginPage() {
     schema: loginSchema,
     handler: async (values) => {
       try {
-        const response = await api.login(values);
+        await login(values);
 
-        if(response.role === 'Admin') {
-          login(response.role);
-          navigate({ to: '/' });
-        } else {
-          toast.error('Acesso negado. Apenas administradores podem acessar a dashboard.');
+        const userRole = await getUserRole(); // Função fictícia para buscar a role do usuário
+        if (userRole !== 'Admin') {
+          throw new Error('Apenas usuários com a role "Admin" podem acessar.');
         }
-      } catch (error) {
-        toast.error('Erro ao fazer login. Verifique suas credenciais.');
+
+        toast.success('Login realizado com sucesso. Redirecionando...');
+        navigate({ to: '/' });
+      } catch (error: unknown) {
+        toast.error((error as Error).message || 'Usuário ou senha inválidos.');
+
+        form.setValue('password', '');
+        form.setError('password', { message: 'Tente outra senha.' });
       }
-  }
-});
+    },
+  });
 
   usePublicRoute();
 
@@ -120,4 +124,11 @@ function LoginPage() {
       </Form>
     </FullScreenPage>
   );
+}
+
+// Função fictícia para buscar a role do usuário
+async function getUserRole(): Promise<string> {
+  // Aqui você pode usar a role armazenada no estado do `useAuth` ou fazer uma requisição à API.
+  const response = await axiosClient.get<{ role: string }>('/auth/role');
+  return response.data.role;
 }
