@@ -19,10 +19,11 @@ import {
 import { Input } from '@/components/ui/input';
 import { useZodForm } from '@/hooks/lib/use-zod-form';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useAuth } from '@/store/use-auth';
+import { useAuth } from '@/context/auth-context';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { usePublicRoute } from '@/hooks/auth/use-public-route';
+import { api } from '@/services/api'; 
 
 export const Route = createFileRoute('/login/')({
   component: () => <LoginPage />,
@@ -42,20 +43,20 @@ function LoginPage() {
   const form = useZodForm({
     schema: loginSchema,
     handler: async (values) => {
-      await login(values);
-    },
-    onSubmitSuccess: () => {
-      toast.success('Login realizado com sucesso. Redirecionando...');
+      try {
+        const response = await api.login(values);
 
-      navigate({ to: '/' });
-    },
-    onSubmitError: () => {
-      toast.error('Usuário ou senha inválidos.');
-
-      form.setValue('password', '');
-      form.setError('password', { message: 'Tente outra senha.' });
-    },
-  });
+        if(response.role === 'Admin') {
+          login(response.role);
+          navigate({ to: '/' });
+        } else {
+          toast.error('Acesso negado. Apenas administradores podem acessar a dashboard.');
+        }
+      } catch (error) {
+        toast.error('Erro ao fazer login. Verifique suas credenciais.');
+      }
+  }
+});
 
   usePublicRoute();
 
