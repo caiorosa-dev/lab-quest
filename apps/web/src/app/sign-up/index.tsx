@@ -24,11 +24,11 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 import { usePublicRoute } from '@/hooks/auth/use-public-route';
 
-export const Route = createFileRoute('/register/')({
-  component: () => <RegisterPage />,
+export const Route = createFileRoute('/sign-up/')({
+  component: () => <SignUpPage />,
 });
 
-const registerSchema = z.object({
+const signUpSchema = z.object({
   name: z.string().min(3, { message: 'O nome é obrigatório.' }),
   email: z.string().email({ message: 'Por favor, insira um email válido.' }),
   password: z
@@ -40,12 +40,12 @@ const registerSchema = z.object({
   path: ['confirmPassword'],
 });
 
-function RegisterPage() {
+function SignUpPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
   const form = useZodForm({
-    schema: registerSchema,
+    schema: signUpSchema,
     handler: async (values) => {
       await register(values);
     },

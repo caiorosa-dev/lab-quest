@@ -2,7 +2,6 @@ import * as React from 'react';
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from 'embla-carousel-react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/helpers/utils';
@@ -215,6 +214,12 @@ const CarouselNext = React.forwardRef<
 });
 CarouselNext.displayName = 'CarouselNext';
 
+const CarouselControlledShowComponent = ({ children, last }: { children: React.ReactNode, last: boolean }) => {
+  const { canScrollNext } = useCarousel();
+
+  return (!last && canScrollNext) || (last && !canScrollNext) ? children : null;
+}
+
 const CarouselIndicator = () => {
   const { api } = useCarousel();
 
@@ -231,8 +236,8 @@ const CarouselIndicator = () => {
           <button
             key={index}
             className={cn(
-              'h-2 w-2 rounded-full transition-all',
-              isActive ? 'bg-primary w-14' : 'bg-muted-foreground'
+              'h-2 w-2 rounded-full transition-all duration-500',
+              isActive ? 'bg-primary w-14' : 'bg-slate-300 dark:bg-slate-600'
             )}
             onClick={() => api.scrollTo(index)}
             aria-label={`Go to slide ${index + 1}`}
@@ -251,5 +256,6 @@ export {
   CarouselItem,
   CarouselIndicator,
   CarouselNext,
+  CarouselControlledShowComponent,
 };
 

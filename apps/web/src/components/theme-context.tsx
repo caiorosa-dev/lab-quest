@@ -44,7 +44,7 @@ export function ThemeProvider({
         ? 'dark'
         : 'light';
 
-      root.classList.add(systemTheme);
+      root.classList.add('light');
       return;
     }
 
