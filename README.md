@@ -10,6 +10,8 @@ Lab Quest leverages a modern tech stack to deliver its features effectively:
 - **Node.js**: Utilized for server-side operations, requiring version 20 or higher.
 - **Prisma**: Integrated for database migrations and management.
 - **Swagger**: Provides API documentation for easy access and understanding.
+- **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.
+
 
 ### Infrastructure
 - **Yarn**: Employed as the package manager for handling project dependencies.
@@ -98,3 +100,5 @@ Here are the key contributors:
 ## License
 
 This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) file for more information.
+
+
