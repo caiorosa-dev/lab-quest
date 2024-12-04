@@ -23,6 +23,7 @@ import { useAuth } from '@/store/use-auth';
 import { z } from 'zod';
 import { toast } from 'sonner';
 import { usePublicRoute } from '@/hooks/auth/use-public-route';
+import { axiosClient } from '@/services/axios';
 
 export const Route = createFileRoute('/login/')({
   component: () => <LoginPage />,
@@ -42,18 +43,22 @@ function LoginPage() {
   const form = useZodForm({
     schema: loginSchema,
     handler: async (values) => {
-      await login(values);
-    },
-    onSubmitSuccess: () => {
-      toast.success('Login realizado com sucesso. Redirecionando...');
+      try {
+        await login(values);
 
-      navigate({ to: '/' });
-    },
-    onSubmitError: () => {
-      toast.error('Usuário ou senha inválidos.');
+        const userRole = await getUserRole(); // Função fictícia para buscar a role do usuário
+        if (userRole !== 'Admin') {
+          throw new Error('Apenas usuários com a role "Admin" podem acessar.');
+        }
 
-      form.setValue('password', '');
-      form.setError('password', { message: 'Tente outra senha.' });
+        toast.success('Login realizado com sucesso. Redirecionando...');
+        navigate({ to: '/' });
+      } catch (error: unknown) {
+        toast.error((error as Error).message || 'Usuário ou senha inválidos.');
+
+        form.setValue('password', '');
+        form.setError('password', { message: 'Tente outra senha.' });
+      }
     },
   });
 
@@ -119,4 +124,11 @@ function LoginPage() {
       </Form>
     </FullScreenPage>
   );
+}
+
+// Função fictícia para buscar a role do usuário
+async function getUserRole(): Promise<string> {
+  // Aqui você pode usar a role armazenada no estado do `useAuth` ou fazer uma requisição à API.
+  const response = await axiosClient.get<{ role: string }>('/auth/role');
+  return response.data.role;
 }

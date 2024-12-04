@@ -30,10 +30,19 @@ export const useAuth = create(
       isAuthenticated: false,
 
       login: async (payload: LoginPayload) => {
-        const response = await axiosClient.post<{ access_token?: string }>(
+        const response = await axiosClient.post<{ 
+          access_token?: string; 
+          user?: { role: string };
+        }>(
           '/auth/sign-in',
           payload
         );
+
+        const userRole = response.data.user?.role;
+
+        if(userRole !== 'Admin') {
+          throw new Error('Acesso negado. Apenas administradores podem acessar a dashboard.');
+        }
 
         set({ isAuthenticated: true, accessToken: response.data.access_token });
       },
