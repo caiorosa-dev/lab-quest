@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('admin', 'developer', 'manager', 'student');
+CREATE TYPE "UserRole" AS ENUM ('admin', 'developer', 'student');
 
 -- CreateEnum
 CREATE TYPE "LessonExerciseType" AS ENUM ('unique_answer', 'multiple_choice', 'true_false', 'fill_in', 'matching', 'complete_the_sentence');
@@ -8,8 +8,9 @@ CREATE TYPE "LessonExerciseType" AS ENUM ('unique_answer', 'multiple_choice', 't
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "phoneNumber" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "imageUrl" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'student',
     "currentLevel" INTEGER NOT NULL DEFAULT 1,
@@ -84,6 +85,9 @@ CREATE TABLE "lesson_exercises" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_phoneNumber_key" ON "users"("phoneNumber");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_currentLearningTrackId_fkey" FOREIGN KEY ("currentLearningTrackId") REFERENCES "learning_tracks"("id") ON DELETE SET NULL ON UPDATE CASCADE;

@@ -5,7 +5,7 @@ import { hash } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(data: Prisma.UserCreateInput): Promise<User> {
     const hashedPassword = await hash(data.password, 11);
@@ -25,6 +25,10 @@ export class UsersService {
 
   async findByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({ where: { email } });
+  }
+
+  async findByEmailOrPhoneNumber(identifier: string): Promise<User | null> {
+    return this.prisma.user.findFirst({ where: { OR: [{ email: identifier }, { phoneNumber: identifier }] } });
   }
 
   async update(id: string, data: Prisma.UserUpdateInput): Promise<User> {
