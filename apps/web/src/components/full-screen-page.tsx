@@ -1,6 +1,6 @@
 import { cn } from "@/helpers/utils";
 import { PropsWithChildren } from "react";
-import { BottomNav } from "./bottom-tab-navigation";
+import { MobileNav } from './layout/mobile-nav';
 
 export function FullScreenPage({
   children,
@@ -16,7 +16,7 @@ export function FullScreenPage({
       >
         {children}
       </main>
-      <BottomNav></BottomNav>
+      <MobileNav />
     </>
   );
 }

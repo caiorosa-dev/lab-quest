@@ -24,7 +24,7 @@ const tabs = [
   },
 ];
 
-const BottomNav = () => {
+const MobileNav = () => {
   return (
     <nav className="fixed bottom-0 w-full bg-white">
       <div className="flex justify-around py-3">
@@ -46,4 +46,4 @@ const BottomNav = () => {
   );
 };
 
-export { BottomNav };
+export { MobileNav };
