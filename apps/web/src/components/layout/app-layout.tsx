@@ -17,6 +17,7 @@ export function AppLayout({
   return (
     <>
       {!isLoading && containerHeader}
+      <MobileHeader />
       <FullScreenPage>
         {isLoading && <Loading />}
         {!isLoading && <Container className={className}>{children}</Container>}
