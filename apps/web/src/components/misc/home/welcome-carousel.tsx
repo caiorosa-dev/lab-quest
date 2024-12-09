@@ -1,6 +1,6 @@
 import { cn } from '@/helpers/utils';
 import React from 'react';
-import { CarouselItem } from '../ui/carousel';
+import { CarouselItem } from '@/components/ui/carousel';
 
 interface WelcomeCarouselItemProps {
 	imgSrc: string;

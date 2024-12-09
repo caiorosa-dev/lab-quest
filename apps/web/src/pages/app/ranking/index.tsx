@@ -1,16 +1,13 @@
-import { FullScreenPage } from "@/components/full-screen-page";
-import { usePublicRoute } from "@/hooks/auth/use-public-route";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AppLayout } from '@/components/layout/app-layout';
 
 export const Route = createFileRoute("/app/ranking/")({
   component: () => <RankingPage />,
 });
 
 function RankingPage() {
-  usePublicRoute(); // change to usePrivateRoute
-
   const global_ranking = [
     {
       name: "João",
@@ -42,7 +39,7 @@ function RankingPage() {
   ];
 
   return (
-    <FullScreenPage className="flex justify-center items-center flex-col">
+    <AppLayout className='space-y-12'>
       <Tabs defaultValue="global" className="w-full max-w-lg">
         <div className="flex place-content-between items-end">
           <h1 className="text-primary text-3xl font-bold mt-3">Ranking</h1>
@@ -79,6 +76,6 @@ function RankingPage() {
           ))}
         </TabsContent>
       </Tabs>
-    </FullScreenPage>
+    </AppLayout>
   );
 }

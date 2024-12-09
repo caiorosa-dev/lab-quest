@@ -1,4 +1,4 @@
-import { FullScreenPage } from '@/components/full-screen-page';
+import { FullScreenPage } from '@/components/layout/full-screen-page';
 import { Button, ButtonIcon } from '@/components/ui/button';
 import {
   Card,
@@ -22,7 +22,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useAuth } from '@/store/use-auth';
 import { z } from 'zod';
 import { toast } from 'sonner';
-import { usePublicRoute } from '@/hooks/auth/use-public-route';
+import { PublicRoute } from '@/components/auth/public-route';
 
 export const Route = createFileRoute('/sign-up/')({
   component: () => <SignUpPage />,
@@ -59,83 +59,83 @@ function SignUpPage() {
     },
   });
 
-  usePublicRoute();
-
   return (
-    <FullScreenPage className="flex justify-center items-center">
-      <Form {...form}>
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle className="text-2xl">Registrar</CardTitle>
-            <CardDescription>
-              Insira seu email e senha para criar uma conta.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem className="grid gap-2">
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="exemplo@email.com"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className="grid gap-2">
-                  <FormLabel>Senha</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Digite sua senha"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem className="grid gap-2">
-                  <FormLabel>Confirme sua Senha</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Confirme sua senha"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </CardContent>
-          <CardFooter>
-            <Button
-              disabled={form.isSubmitting || !form.formState.isValid}
-              type="submit"
-              className="w-full"
-            >
-              <ButtonIcon isLoading={form.isSubmitting} />
-              Registrar
-            </Button>
-          </CardFooter>
-        </Card>
-      </Form>
-    </FullScreenPage>
+    <PublicRoute>
+      <FullScreenPage className="flex justify-center items-center">
+        <Form {...form}>
+          <Card className="w-full max-w-sm">
+            <CardHeader>
+              <CardTitle className="text-2xl">Registrar</CardTitle>
+              <CardDescription>
+                Insira seu email e senha para criar uma conta.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="grid gap-2">
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="exemplo@email.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem className="grid gap-2">
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Digite sua senha"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem className="grid gap-2">
+                    <FormLabel>Confirme sua Senha</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Confirme sua senha"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </CardContent>
+            <CardFooter>
+              <Button
+                disabled={form.isSubmitting || !form.formState.isValid}
+                type="submit"
+                className="w-full"
+              >
+                <ButtonIcon isLoading={form.isSubmitting} />
+                Registrar
+              </Button>
+            </CardFooter>
+          </Card>
+        </Form>
+      </FullScreenPage>
+    </PublicRoute>
   );
 }

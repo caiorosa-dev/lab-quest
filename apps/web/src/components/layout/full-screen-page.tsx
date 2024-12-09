@@ -1,6 +1,5 @@
 import { cn } from "@/helpers/utils";
 import { PropsWithChildren } from "react";
-import { MobileNav } from './layout/mobile-nav';
 
 export function FullScreenPage({
   children,
@@ -10,13 +9,12 @@ export function FullScreenPage({
     <>
       <main
         className={cn(
-          "w-full min-h-screen h-full flex justify-center",
+          "w-full min-h-screen h-full grid grid-cols-1 items-center",
           className
         )}
       >
         {children}
       </main>
-      <MobileNav />
     </>
   );
 }

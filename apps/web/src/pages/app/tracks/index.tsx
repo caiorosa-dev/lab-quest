@@ -1,7 +1,4 @@
-import { usePublicRoute } from "@/hooks/auth/use-public-route";
 import { createFileRoute } from "@tanstack/react-router";
-
-import { FullScreenPage } from "@/components/full-screen-page";
 
 import {
   Card,
@@ -12,14 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { AppLayout } from '@/components/layout/app-layout';
 
 export const Route = createFileRoute("/app/tracks/")({
   component: () => <TracksPage />,
 });
 
 function TracksPage() {
-  usePublicRoute(); // mudar para usePrivateRoute
-
   const data = [
     {
       id: 1,
@@ -69,24 +65,26 @@ function TracksPage() {
   ];
 
   return (
-    <FullScreenPage className="flex justify-center items-center flex-col">
-      <h1 className="text-primary text-3xl font-bold mt-3">
+    <AppLayout className='space-y-12'>
+      <h1 className="text-secondary-foreground text-center text-2xl font-bold">
         Trilhas de Aprendizado
       </h1>
-      {data.map((track) => (
-        <Card key={track.id} className="mt-5 w-full max-w-xl">
-          <CardHeader className="p-0 mb-3">
-            <img src={track.image} alt={track.name} className="rounded-md" />
-          </CardHeader>
-          <CardContent className="flex place-content-between">
-            <CardTitle>{track.name}</CardTitle>
-            <CardDescription>{track.subjects} unidades</CardDescription>
-          </CardContent>
-          <CardFooter>
-            <Progress value={(track.done / track.total) * 100} />
-          </CardFooter>
-        </Card>
-      ))}
-    </FullScreenPage>
+      <div className='flex flex-col gap-4 justify-center'>
+        {data.map((track) => (
+          <Card key={track.id} className="w-full max-w-xl">
+            <CardHeader className="p-0 mb-3">
+              <img src={track.image} alt={track.name} className="rounded-md" />
+            </CardHeader>
+            <CardContent className="flex place-content-between">
+              <CardTitle>{track.name}</CardTitle>
+              <CardDescription>{track.subjects} unidades</CardDescription>
+            </CardContent>
+            <CardFooter>
+              <Progress value={(track.done / track.total) * 100} />
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </AppLayout>
   );
 }
