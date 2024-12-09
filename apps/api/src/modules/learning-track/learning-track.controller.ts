@@ -3,6 +3,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagg
 import { LearningTrackService } from './learning-track.service';
 import { UserRole } from '@prisma/client';
 import { Roles } from 'src/shared/decorators/roles.decorator';
+import { AuthenticatedUser } from 'src/shared/decorators/authenticated-user.decorator';
 
 @ApiTags('learning-tracks')
 @Controller('learning-tracks')
@@ -15,6 +16,15 @@ export class LearningTrackController {
 	@ApiResponse({ status: 200, description: 'List of learning tracks retrieved successfully.' })
 	findAll() {
 		return this.learningTrackService.findAll();
+	}
+
+	@Get('/current')
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Retrieve the current learning track information' })
+	@ApiResponse({ status: 200, description: 'Current learning track information retrieved successfully.' })
+	@ApiResponse({ status: 404, description: 'Learning track not found.' })
+	getCurrentInfo(@AuthenticatedUser() user: AuthenticatedUser) {
+		return this.learningTrackService.getCurrentInfo(user.id);
 	}
 
 	@Get(':id')

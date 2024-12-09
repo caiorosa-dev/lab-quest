@@ -1,7 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { FullScreenPage } from '@/components/full-screen-page';
-import { usePublicRoute } from '@/hooks/auth/use-public-route';
-import { Logo } from '@/components/logo';
+import { Logo } from '@/components/misc/logo';
 import {
   Carousel,
   CarouselContent,
@@ -9,20 +7,20 @@ import {
   CarouselIndicator,
   CarouselNext,
 } from '@/components/ui/carousel';
-import WelcomeCarouselItem from '@/components/home/welcome-carousel';
+import WelcomeCarouselItem from '@/components/misc/home/welcome-carousel';
 import { Button } from '@/components/ui/button';
+import { PublicRoute } from '@/components/auth/public-route';
+import { FullScreenPage } from '@/components/layout/full-screen-page';
 
 export const Route = createFileRoute('/')({
   component: IndexPage,
 });
 
 function IndexPage() {
-  usePublicRoute();
-
   return (
-    <FullScreenPage className='flex justify-center items-center'>
+    <PublicRoute>
       <Logo className="absolute top-12 left-1/2 -translate-x-1/2" />
-      <div className="max-w-xl w-full py-12 px-4">
+      <FullScreenPage className='max-w-xl mx-auto py-12 px-4'>
         <Carousel>
           <CarouselContent>
             <WelcomeCarouselItem
@@ -73,7 +71,7 @@ function IndexPage() {
             </CarouselControlledShowComponent>
           </footer>
         </Carousel>
-      </div>
-    </FullScreenPage>
+      </FullScreenPage>
+    </PublicRoute>
   );
 }

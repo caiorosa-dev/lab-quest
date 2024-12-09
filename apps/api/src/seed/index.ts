@@ -13,6 +13,7 @@ async function seed() {
     },
     create: {
       email: 'contact@caiorosadev.com',
+      phoneNumber: '+5548998238499',
       name: 'Caio Rosa',
       password: await hash('admin', 11),
       role: 'developer',
@@ -23,7 +24,7 @@ async function seed() {
 export async function runDatabaseSeed() {
   await seed();
 
-  console.log('Database seeded successfully :)');
+  console.log('🌿 Database seeded successfully');
 }
 
 runDatabaseSeed()

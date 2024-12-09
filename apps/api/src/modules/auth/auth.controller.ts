@@ -16,6 +16,6 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'User successfully signed in' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto.email, signInDto.password);
+    return this.authService.signIn(signInDto.identifier, signInDto.password);
   }
 }
