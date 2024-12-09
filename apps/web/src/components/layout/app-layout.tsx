@@ -3,6 +3,7 @@ import { MobileNav } from './mobile-nav';
 import { Container } from './container';
 import { Loading } from '../loading';
 import { FullScreenPage } from './full-screen-page';
+import { MobileHeader } from './mobile-header';
 
 export function AppLayout({
   children,

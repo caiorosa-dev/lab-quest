@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <AppLayout
       containerHeader={
-        <div className="bg-secondary w-full fixed top-0 left-0 z-50">
+        <div className="bg-secondary w-full fixed top-12 left-0 z-50">
           <div className="max-w-xl mx-auto px-8 py-2 flex justify-between">
             <div className="flex items-center gap-4">
               <div className="bg-emerald-600 rounded-full h-12 w-12 flex items-center justify-center">

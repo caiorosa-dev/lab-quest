@@ -1,9 +1,6 @@
-import { cn } from "@/helpers/utils";
-import { Link } from "@tanstack/react-router";
-import { CircleFadingArrowUp, Flame } from "lucide-react";
-import { SVGProps } from "react";
-import { Logo } from "../misc/logo";
-import { Progress } from "../ui/progress";
+import { CircleFadingArrowUp, Flame } from 'lucide-react';
+import { Logo } from '../misc/logo';
+import { Progress } from '../ui/progress';
 
 const MobileHeader = () => {
   return (
