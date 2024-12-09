@@ -7,17 +7,19 @@ Lab Quest is an educational platform developed in collaboration with the Químic
 Lab Quest leverages a modern tech stack to deliver its features effectively:
 
 ### Backend
+
 - **Node.js**: Utilized for server-side operations, requiring version 20 or higher.
 - **Prisma**: Integrated for database migrations and management.
 - **Swagger**: Provides API documentation for easy access and understanding.
 - **NestJS**: A progressive Node.js framework for building efficient and scalable server-side applications.
 
-
 ### Infrastructure
+
 - **Yarn**: Employed as the package manager for handling project dependencies.
 - **Docker**: Used to manage the database and other essential services through containerization.
 
 ### Frontend
+
 - **React**: Utilized for building the user interface.
 - **Tailwind CSS**: Used for styling the application with utility-first CSS.
 
@@ -37,6 +39,7 @@ Before you begin, ensure you have met the following requirements:
 Follow these steps to get the project up and running:
 
 1. **Clone the repository**:
+
    ```sh
    git clone <repository-url>
    cd lab-quest
@@ -44,6 +47,7 @@ Follow these steps to get the project up and running:
 
 2. **Install dependencies**:
    Navigate to the root of the project and run:
+
    ```sh
    yarn install
    ```
@@ -53,19 +57,23 @@ Follow these steps to get the project up and running:
 
 4. **Start the database and other services**:
    Use Docker Compose to start the necessary services:
+
    ```sh
    docker-compose up -d
    ```
+
    This will start the PostgreSQL database and any other services defined in the `docker-compose.yml` file.
 
 5. **Run database migrations**:
    Ensure the database schema is up to date by running:
+
    ```sh
    yarn prisma migrate dev
    ```
 
 6. **Start the development server**:
    You can start the development server for both the API and the web application using:
+
    ```sh
    yarn dev
    ```
@@ -79,6 +87,7 @@ Follow these steps to get the project up and running:
 ## Additional Commands
 
 - **Build the project**:
+
   ```sh
   yarn build
   ```
@@ -95,10 +104,7 @@ Here are the key contributors:
 - **Caio Rosa ([caiorosa-dev](https://github.com/caiorosa-dev))**: Project leader, contributed to all aspects of development (API, app, and dashboard) and design.
 - **André Melo ([andregabrielmelo](https://github.com/andregabrielmelo))**: Contributed to design, and development of the API and app.
 - **Jordan Lippert ([JordanLippert](https://github.com/JordanLippert))**: Contributed to the development of the dashboard.
-- **Rhichyllie ([Rhichyllie](https://github.com/Rhichyllie))**: Contributed to design and development of the dashboard.
 
 ## License
 
 This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) file for more information.
-
-

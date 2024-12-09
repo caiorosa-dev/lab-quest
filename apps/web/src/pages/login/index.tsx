@@ -1,5 +1,5 @@
-import { FullScreenPage } from "@/components/layout/full-screen-page";
-import { Button, ButtonIcon } from "@/components/ui/button";
+import { FullScreenPage } from '@/components/layout/full-screen-page';
+import { Button, ButtonIcon } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -7,7 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -15,25 +15,27 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useZodForm } from "@/hooks/lib/use-zod-form";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useAuth } from "@/store/use-auth";
-import { z } from "zod";
-import { toast } from "sonner";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useZodForm } from '@/hooks/lib/use-zod-form';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useAuth } from '@/store/use-auth';
+import { z } from 'zod';
+import { toast } from 'sonner';
 import { Logo } from '@/components/misc/logo';
 import { PublicRoute } from '@/components/auth/public-route';
 
-export const Route = createFileRoute("/login/")({
+export const Route = createFileRoute('/login/')({
   component: () => <LoginPage />,
 });
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Por favor, insira um email válido." }),
+  identifier: z
+    .string()
+    .email({ message: 'Por favor, insira um email válido.' }),
   password: z
     .string()
-    .min(3, { message: "A senha deve ter pelo menos 3 caracteres." }),
+    .min(3, { message: 'A senha deve ter pelo menos 3 caracteres.' }),
 });
 
 function LoginPage() {
@@ -46,15 +48,15 @@ function LoginPage() {
       await login(values);
     },
     onSubmitSuccess: () => {
-      toast.success("Login realizado com sucesso. Redirecionando...");
+      toast.success('Login realizado com sucesso. Redirecionando...');
 
-      navigate({ to: "/" });
+      navigate({ to: '/app' });
     },
     onSubmitError: () => {
-      toast.error("Usuário ou senha inválidos.");
+      toast.error('Usuário ou senha inválidos.');
 
-      form.setValue("password", "");
-      form.setError("password", { message: "Tente outra senha." });
+      form.setValue('password', '');
+      form.setError('password', { message: 'Tente outra senha.' });
     },
   });
 
@@ -73,7 +75,7 @@ function LoginPage() {
             <CardContent className="grid gap-4">
               <FormField
                 control={form.control}
-                name="email"
+                name="identifier"
                 render={({ field }) => (
                   <FormItem className="grid gap-2">
                     <FormLabel>Email</FormLabel>
