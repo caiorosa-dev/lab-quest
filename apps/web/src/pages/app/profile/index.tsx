@@ -1,45 +1,41 @@
-import { usePublicRoute } from "@/hooks/auth/use-public-route";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router';
 
-import { FullScreenPage } from "@/components/full-screen-page";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { AppLayout } from '@/components/layout/app-layout';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-export const Route = createFileRoute("/profile/")({
+export const Route = createFileRoute('/app/profile/')({
   component: () => <ProfilePage />,
 });
 
 function ProfilePage() {
-  usePublicRoute(); // mudar para usePrivateRoute
-
   const stats = [
     {
-      title: "Niveís Completos",
+      title: 'Niveís Completos',
       stat: 30,
     },
     {
-      title: "Dias Seguidos Máximos",
+      title: 'Dias Seguidos Máximos',
       stat: 11,
     },
     {
-      title: "Niveis Sem Errar Questões",
+      title: 'Niveis Sem Errar Questões',
       stat: 7,
     },
     {
-      title: "Trilhas Completas",
+      title: 'Trilhas Completas',
       stat: 2,
     },
     {
-      title: "Questões Respondidas",
+      title: 'Questões Respondidas',
       stat: 100,
     },
   ];
 
   return (
-    <FullScreenPage className="flex justify-start items-center flex-col">
-      <div className="w-full max-w-xl">
+    <AppLayout>
+      <section className="flex flex-col items-center gap-8 justify-center">
         <h1 className="text-primary text-3xl font-bold mt-3">Perfil</h1>
-        <div className="flex justify-center gap-5 w-full max-w-sm mt-4">
+        <div className="flex justify-center gap-5 w-full max-w-sm">
           <Avatar className="rounded h-20 w-20">
             <AvatarImage src="https://placehold.co/100x100" />
             <AvatarFallback>CN</AvatarFallback>
@@ -52,7 +48,9 @@ function ProfilePage() {
             </p>
           </div>
         </div>
-        <h1 className="text-primary text-3xl font-bold mt-4">Estatisticas</h1>
+      </section>
+      <section className="flex flex-col items-center gap-8 justify-center">
+        <h1 className="text-primary text-3xl font-bold">Estatisticas</h1>
         <div className="mt-4 gap-3 grid grid-cols-2">
           {stats.map((stat) => (
             <p className="">
@@ -60,7 +58,7 @@ function ProfilePage() {
             </p>
           ))}
         </div>
-      </div>
-    </FullScreenPage>
+      </section>
+    </AppLayout>
   );
 }

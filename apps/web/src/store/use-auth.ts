@@ -5,7 +5,7 @@ import cookiesStorage from '@/helpers/cookie-storage';
 import { User } from '@/types/User';
 
 export type LoginPayload = {
-  email: string;
+  identifier: string;
   password: string;
 };
 
@@ -38,17 +38,17 @@ export const useAuth = create(
         set({ isAuthenticated: true, accessToken: response.data.access_token });
       },
       register: async (payload: RegisterPayload) => {
-        await axiosClient.post<User>(
-          '/users/sign-up',
-          payload
-        );
+        await axiosClient.post<User>('/users/sign-up', payload);
 
         const loginResponse = await axiosClient.post<{ access_token?: string }>(
           '/auth/sign-in',
           payload
         );
 
-        set({ isAuthenticated: true, accessToken: loginResponse.data.access_token });
+        set({
+          isAuthenticated: true,
+          accessToken: loginResponse.data.access_token,
+        });
       },
       logout: async () => {
         set({ isAuthenticated: false, accessToken: null });
