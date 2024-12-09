@@ -15,7 +15,7 @@ const tabs = [
   {
     name: "Ranking",
     icon: Medal,
-    path: "/rankings",
+    path: "/ranking",
   },
   {
     name: "Perfil",
