@@ -9,7 +9,7 @@ export function FullScreenPage({
     <>
       <main
         className={cn(
-          "w-full min-h-screen h-full grid grid-cols-1 items-center",
+          "w-full min-h-screen h-full grid grid-cols-1 items-center grid-flow-row",
           className
         )}
       >
