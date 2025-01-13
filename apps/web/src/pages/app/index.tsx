@@ -1,9 +1,9 @@
-import { AppLayout } from '@/components/layout/app-layout';
-import { Button } from '@/components/ui/button';
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowRightLeftIcon, LeafIcon } from 'lucide-react';
+import { AppLayout } from "@/components/layout/app-layout";
+import { Button } from "@/components/ui/button";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRightLeftIcon, LeafIcon } from "lucide-react";
 
-export const Route = createFileRoute('/app/')({
+export const Route = createFileRoute("/app/")({
   component: () => <HomePage />,
 });
 
@@ -43,7 +43,9 @@ function HomePage() {
       <section className="space-y-4">
         <div className="flex justify-between items-center gap-4">
           <div className="w-16 h-[1px] bg-border" />
-          <p className='text-sm font-medium'>1. Introdução à Química Orgânica</p>
+          <p className="text-sm font-medium">
+            1. Introdução à Química Orgânica
+          </p>
           <div className="w-16 h-[1px] bg-border" />
         </div>
       </section>

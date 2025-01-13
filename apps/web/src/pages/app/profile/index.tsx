@@ -1,39 +1,46 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from "@tanstack/react-router";
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { AppLayout } from '@/components/layout/app-layout';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AppLayout } from "@/components/layout/app-layout";
 
-export const Route = createFileRoute('/app/profile/')({
+export const Route = createFileRoute("/app/profile/")({
   component: () => <ProfilePage />,
 });
 
 function ProfilePage() {
   const stats = [
     {
-      title: 'Niveís Completos',
+      title: "Niveís Completos",
       stat: 30,
     },
     {
-      title: 'Dias Seguidos Máximos',
+      title: "Dias Seguidos Máximos",
       stat: 11,
     },
     {
-      title: 'Niveis Sem Errar Questões',
+      title: "Niveis Sem Errar Questões",
       stat: 7,
     },
     {
-      title: 'Trilhas Completas',
+      title: "Trilhas Completas",
       stat: 2,
     },
     {
-      title: 'Questões Respondidas',
+      title: "Questões Respondidas",
       stat: 100,
     },
   ];
 
+  const completedTracks = [
+    {
+      name: "Química Orgânica",
+    },
+    {},
+  ];
+
   return (
-    <AppLayout>
-      <section className="flex flex-col items-center gap-8 justify-center">
+    <AppLayout className="space-y-12">
+      <section className="flex flex-col gap-8">
         <h1 className="text-primary text-3xl font-bold mt-3">Perfil</h1>
         <div className="flex justify-center gap-5 w-full max-w-sm">
           <Avatar className="rounded h-20 w-20">
@@ -49,13 +56,21 @@ function ProfilePage() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center gap-8 justify-center">
+      <section className="flex flex-col">
         <h1 className="text-primary text-3xl font-bold">Estatisticas</h1>
         <div className="mt-4 gap-3 grid grid-cols-2">
           {stats.map((stat) => (
             <p className="">
               {stat.title}: {stat.stat}
             </p>
+          ))}
+        </div>
+      </section>
+      <section>
+        <h1 className="text-primary text-3xl font-bold">Trilhas Completas </h1>
+        <div className="mt-4 gap-3 grid grid-cols-2">
+          {completedTracks.map((track) => (
+            <p className="">{track.name}</p>
           ))}
         </div>
       </section>
