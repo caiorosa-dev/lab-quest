@@ -6,7 +6,6 @@ import { Pie, PieChart } from "recharts";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -54,12 +53,11 @@ const chartConfig = {
 export function MyPieChart() {
   return (
     <Card className="flex flex-col max-w-sm">
-      <CardHeader className="pb-0">
+      <CardHeader className="border-b-2">
         <div className="flex items-center gap-4">
           <ChartPie className="h-4 w-4" />
-          <CardTitle>Estudantes Ativos</CardTitle>
+          <CardTitle className="text-lg">Estudantes Ativos</CardTitle>
         </div>
-        <CardDescription>Mês de Janeiro</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
