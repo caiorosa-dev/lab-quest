@@ -1,18 +1,18 @@
-import { getInitials } from '@/helpers/get-initials';
+import { getInitials } from "@/helpers/get-initials";
 import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-} from '@radix-ui/react-popover';
-import { HomeIcon, GitFork, GitBranch, Blocks, LogOutIcon } from 'lucide-react';
-import { Logo } from './logo';
-import { SidebarNavLink } from './ui/sidebar-nav';
-import { SidebarNav } from './ui/sidebar-nav';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Button, ButtonIcon } from './ui/button';
-import { useAuth } from '@/store/use-auth';
-import { useMe } from '@/hooks/api/use-me';
-import { Skeleton } from './ui/skeleton';
+} from "@radix-ui/react-popover";
+import { HomeIcon, GitFork, GitBranch, Blocks, LogOutIcon } from "lucide-react";
+import { Logo } from "../logo";
+import { SidebarNavLink } from "../ui/sidebar-nav";
+import { SidebarNav } from "../ui/sidebar-nav";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button, ButtonIcon } from "../ui/button";
+import { useAuth } from "@/store/use-auth";
+import { useMe } from "@/hooks/api/use-me";
+import { Skeleton } from "../ui/skeleton";
 
 export function Sidebar() {
   const { logout } = useAuth();
@@ -52,7 +52,9 @@ export function Sidebar() {
                 </div>
               </>
             )}
-            {isLoadingUser && <Skeleton className="h-12 w-full animate-fade-up animate-delay-300" />}
+            {isLoadingUser && (
+              <Skeleton className="h-12 w-full animate-fade-up animate-delay-300" />
+            )}
           </footer>
         </PopoverTrigger>
         <PopoverContent className="w-56 p-3">
