@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from '@tanstack/react-table';
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -14,17 +14,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Checkbox } from './checkbox';
+} from "@/components/ui/table";
+import { Checkbox } from "./checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from './dropdown-menu';
-import { Button } from './button';
-import { ListIcon, MoreHorizontal, PencilIcon, Trash2 } from 'lucide-react';
+} from "./dropdown-menu";
+import { Button } from "./button";
+import { ListIcon, MoreHorizontal, PencilIcon, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,7 +34,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from './alert-dialog';
+} from "./alert-dialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,7 +54,7 @@ export function DataTable<TData, TValue>({
   customActionsColumn,
 }: DataTableProps<TData, TValue>) {
   const actionsColumn: ColumnDef<TData, TValue> = {
-    id: 'actions',
+    id: "actions",
     header: ({ table }) => {
       function handleDelete() {
         const rows = table
@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>({
         onDeleteGroup?.(rows);
       }
 
-      if (table.getSelectedRowModel().rows.length > 0) {
+      if (table.getSelectedRowModel().rows.length > 1) {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -102,7 +102,7 @@ export function DataTable<TData, TValue>({
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <DropdownMenuItem>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                   <Trash2 className="w-4 h-4 mr-2" />
                   Deletar
                 </DropdownMenuItem>
@@ -132,12 +132,12 @@ export function DataTable<TData, TValue>({
   };
 
   const selectColumn: ColumnDef<TData, TValue> = {
-    id: 'select',
+    id: "select",
     header: ({ table }) => (
       <Checkbox
         checked={
           table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && 'indeterminate')
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value: boolean) =>
           table.toggleAllPageRowsSelected(!!value)
@@ -189,7 +189,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -214,8 +214,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} de{' '}
+      <div className="flex-1 text-sm text-muted-foreground mt-4">
+        {table.getFilteredSelectedRowModel().rows.length} de{" "}
         {table.getFilteredRowModel().rows.length} coluna(s) selecionadas.
       </div>
     </>

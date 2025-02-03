@@ -1,5 +1,5 @@
-import { Loader2 } from 'lucide-react';
-import { FullScreenPage } from './full-screen-page';
+import { Loader2 } from "lucide-react";
+import { FullScreenPage } from "./layout/full-screen-page";
 
 export function Loading() {
   return (
