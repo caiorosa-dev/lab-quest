@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>({
         onDeleteGroup?.(rows);
       }
 
-      if (table.getSelectedRowModel().rows.length > 0) {
+      if (table.getSelectedRowModel().rows.length > 1) {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -102,7 +102,7 @@ export function DataTable<TData, TValue>({
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <DropdownMenuItem>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                   <Trash2 className="w-4 h-4 mr-2" />
                   Deletar
                 </DropdownMenuItem>
@@ -214,7 +214,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex-1 text-sm text-muted-foreground">
+      <div className="flex-1 text-sm text-muted-foreground mt-4">
         {table.getFilteredSelectedRowModel().rows.length} de{" "}
         {table.getFilteredRowModel().rows.length} coluna(s) selecionadas.
       </div>

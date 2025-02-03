@@ -10,16 +10,8 @@ export type LearningTrack = {
 
 export const columns: ColumnDef<LearningTrack>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
-  },
-  {
     accessorKey: "name",
     header: "Nome",
-  },
-  {
-    accessorKey: "activeUsers",
-    header: "Usuários Ativos",
   },
   {
     accessorKey: "createdAt",
@@ -28,5 +20,9 @@ export const columns: ColumnDef<LearningTrack>[] = [
   {
     accessorKey: "updateAt",
     header: "Atualizado Em",
+  },
+  {
+    accessorKey: "activeUsers",
+    header: "Usuários Ativos",
   },
 ];
